@@ -1,0 +1,460 @@
+def checking (n) :
+    d = 0
+    m = 0
+    for i in range (len(n)) :
+        if not(n[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,-òàè+'ì_:;ç°é*?^[]@#\|><") :
+            d = d+1
+            if n[i] == "." :
+                m = m+1
+                if m>1 :
+                    exit ("Please input a correct option")
+
+    if d == len(n) :
+        return (n)
+    else :
+        exit ("Please input a correct option")
+
+'''
+#this program aims to find the oldest person within a group
+import random
+
+def oldest (n) :
+    a = random.randint (18 , 36)
+    questions = 0
+
+    for i in range (n-1) :
+        b = random.randint (18 , 36)
+        questions = questions +1
+
+        if b > a :
+            a=b
+
+    return (questions)
+
+print(oldest(374))
+
+
+#convert seconds into weeks, days, hours, minutes and seconds.
+seconds = 7*24*60*60
+SEC = 1
+MIN = SEC*60
+HOUR = MIN*60
+DAY = HOUR*24
+WEEK = DAY*7
+
+weeks = int(seconds/WEEK)
+seconds = seconds%WEEK
+days = int(seconds/DAY)
+seconds = seconds%DAY
+hours = int(seconds/HOUR)
+seconds = seconds%HOUR
+minutes = int(seconds/MIN)
+
+print("weeks : ", weeks, ", days : ", days, ", hours : ", hours, ", minutes : ", minutes, ", seconds : ", seconds)
+
+
+#tiles problem
+
+totalwidth = 100
+tilewidth = 5
+totaltiles = 1
+
+tilepair = tilewidth*2
+freespace = totalwidth - tilewidth
+
+totalpairs = int(freespace/tilepair)
+totaltiles = totaltiles + totalpairs*2
+gap = (totalwidth - totaltiles*tilewidth)/2
+
+print ("Amount of tiles needed : ", totaltiles)
+print ("Gap on each side : ", gap)
+
+#Lab 01, Ex 3
+
+start1 = 10
+start2 = 15
+end1 = 12
+end2 = 17
+
+
+if start1 > start2 :
+    s = start1
+else :
+    s = start2
+
+if end1 < end2 :
+    e = end1
+else :
+    e = end2
+
+if s < e :
+    print ("The appointments overlap")
+else :
+    print ("The appointments don't overlap")
+
+#Lab 01, Ex 6
+
+print (1+2+3+4+5+6+7+8+9+10)
+
+
+#Lab 01, Ex 7
+
+bal = 1000
+for i in range (3) :
+    bal = bal*1.05
+    print ("The balance for the year", i , "is", bal)
+
+
+#Lab 02, Ex 1
+
+A = 5
+B = 8
+
+print ("sum", A+B)
+print ("difference", A-B)
+print ("product", A*B)
+print ("Average Value", (A+B)/2)
+print ("distance", abs (A-B))
+if A > B :
+    print ("Maximum", A)
+    print ("Minimum", B)
+else :
+    print ("Maximum", B)
+    print ("Minimum", A)
+
+
+#Lab 2, Ex 2
+
+N = 12345
+
+digits = str (N)
+for i in range (5) :
+    print (digits [i])
+
+#Lab 2, Ex 3
+
+word = "politechnico"
+result = word[:3]+"..."+word[-3:]
+if len(word) < 6 :
+    print ("Stop breaking the program")
+else :
+    print (result)
+
+#Lab 2, Ex 4
+
+quantity = int(input("Number of books?"))
+tprice = int(input("Total Price of the books?"))
+
+taxes = tprice*7.5/100
+shipping = 2*quantity
+total = tprice + taxes + shipping
+
+print (total)
+
+#Lab 2, Ex 5
+
+L = 10
+H = 10
+
+P = 2*H + 2*L
+A = L*H
+D = (L**2+H**2)**(1/2)
+
+print ("The perimeter is", P)
+print ("The area is", A)
+print ("The lengh of the diagonal is", D)
+
+#Lab 2, Ex 6
+
+N = "3382248864"
+R = "("+N[:3]+")"+N[3:6]+"-"+N[6:]
+print (R)
+
+
+#Lab 3, Ex 1
+
+a = input("First number?")
+b = input("Second number?")
+c = input("Third number?")
+
+if a > b and b > c :
+    print ("The numbers are decreasing.")
+elif a < b and b < c :
+    print ("The numbers are increasing.")
+else :
+    print ("The numbers are random.")
+
+#Lab 3, Ex 2
+
+grade = str(input("What is your grade?"))
+numerical = 0
+
+if not("F" in grade or "f" in grade) and ("F" or "f" or "D" or "d" or "C" or "c" or "B" or "b" or "A" or "a") in grade :
+    if "+" in grade :
+       numerical = 0.3
+    elif "-" in grade :
+        numerical = -0.3
+    if "A" in grade or "a" in grade :
+        numerical = numerical +4
+    elif "B" in grade or "b" in grade :
+        numerical = numerical +3
+    elif "C" in grade or "c" in grade :
+        numerical = numerical +2
+    elif "D" in grade or "d" in grade :
+        numerical = numerical +1
+    print ("Your numerical grade is", numerical)
+elif "F" in grade or "f" in grade :
+    print ("LMAO, noob, you got 0")
+else :
+    print ("For fuck sake, input a correct grade")
+
+
+#Lab 3, Ex 3
+
+string = str(input("What is your word?"))
+a = 0
+b = 0
+c = 0
+
+for i in range (len(string)) :
+    if string[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm " :
+        b = b +1
+
+    if b == len(string) :
+        print ("There are only letters")
+        c = 1
+
+b = 0
+
+for i in range (len(string)) :
+    if string[i] in "QWERTYUIOPASDFGHJKLZXCVBNM " :
+        b = b +1
+    if b == len(string) :
+        print ("There are only capital letters")
+
+b = 0
+
+for i in range (len(string)) :
+    if string[i] in "qwertyuiopasdfghjklzxcvbnm " :
+        b = b +1
+    if b == len(string) :
+        print ("There are only lower case letters")
+
+b = 0
+
+for i in range (len(string)) :
+    if string[i] in "1234567890 " :
+        b = b +1
+    if b == len(string) :
+        print ("This is a number")
+
+b = 0
+
+for i in range (len(string)) :
+    if string[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890 " and c != 1 :
+        b = b +1
+    if b == len(string) :
+        print ("This string contains letters and numbers")
+
+if string[0] in "QWERTYUIOPASDFGHJKLZXCVBNM" :
+    print ("The string starts with a capital letter")
+if string[-1] == "." :
+    print ("The string ends with a dot")
+
+#Lab 3, Ex 4
+
+month = int(input("what's the month number?"))
+day = int(input("What's the day number?"))
+
+if month == 1 or 2 or 3 :
+    season = "winter"
+elif month == 4 or 5 or 6 :
+    season = "spring"
+elif month == 7 or 8 or 9 :
+    season = "summer"
+elif month == 10 or 11 or 12 :
+    season = "winter"
+if month%3 == 0 and day >= 21 :
+    if season == "winter" :
+        season = "spring"
+    elif season == "spring" :
+        season = "summer"
+    elif season == "summer" :
+        season = "fall"
+    else :
+        season = "winter"
+
+print ("It's", season, "on the",day,"/",month)
+
+
+#Lab 3, Ex 5
+
+year = int(input("The year?"))
+
+if year%4 == 0 :
+    if year%100 == 0 :
+        if year%400 == 0 :
+            print ("It's a leap year")
+        else :
+            print ("It's not a leap year")
+
+    else :
+        print ("It's a leap year")
+else :
+    print ("It's not a leap year")
+
+
+#Lab 3, Ex 6
+
+numerical = float(input("What is your numerical grade?"))
+grade = "That's illegal"
+
+if numerical < 0.35 :
+    grade = "F"
+elif numerical >= 0.35 and numerical < 0.85 :
+    grade = "D-"
+elif  numerical >= 0.85 and numerical < 1.15 :
+    grade = "D"
+elif  numerical >= 1.15 and numerical < 1.50 :
+    grade = "D+"
+elif  numerical >= 1.5 and numerical < 1.85  :
+    grade = "C-"
+elif numerical >= 1.85 and numerical < 2.15 :
+    grade = "C"
+elif numerical >= 2.15 and numerical < 2.50 :
+    grade = "C+"
+elif numerical >= 2.50 and numerical < 2.85 :
+    grade = "B-"
+elif numerical >= 2.85 and numerical < 3.15 :
+    grade ="B"
+elif numerical >= 3.15 and numerical < 3.50 :
+    grade = "B+"
+elif numerical >= 3.50 and numerical < 3.85 :
+    grade = "A-"
+elif numerical >= 3.85 and numerical < 4.15 :
+    grade = "A"
+elif numerical >= 4.15 and numerical <= 4.3 :
+    grade = "A+"
+
+print (grade)
+
+
+
+#Lab 3, Ex 7
+
+status = str(input("Are you married?, answer with y or n"))
+income = int(input("What's your income?"))
+a = 0
+
+if status == "y" :
+    a = 2
+elif status == "n" :
+    a = 1
+else :
+    print ("Please answer the question")
+
+if a == 1 :
+    if income > 0 and income <= 8000 :
+        print ("You will pay 10% taxes and that's all!")
+    elif income > 8000 and income <= 32000 :
+        print ("You pay 800 bucks and 15% of your hard earned cash")
+    elif income > 32000 :
+        print ("You pay 4400 bucks and 25% you rich man")
+    else :
+        print ("Please answer the question correctly")
+
+if a == 2 :
+    if income > 0 and income <= 16000 :
+        print ("You will pay 10% taxes and that's all!")
+    elif income > 16000 and income <= 64000 :
+        print ("You pay 1600 bucks and 15% of your hard earned cash")
+    elif income > 64000 :
+        print ("You pay 8800 bucks and 25% you rich couple")
+    else :
+        print ("Please answer the question correctly")
+
+
+
+#Lab 3, Ex 7
+
+type = str(input("Convert volume(V), mass(M) or distance(D)?"))
+if type == "V" or type ==  "M" or type == "D" :
+    a = 1
+else :
+    exit("Answer with V, M or D.")
+
+start = str(input("From what do you want to convert? (ml,l,mg,g,kg,mm,cm,m,km)"))
+
+if start[-1] == "l" and type == "V" :
+    b = 1
+elif start[-1] == "g" and type == "M" :
+    b = 2
+elif start[-1] == "m" and type == "D" :
+    b = 3
+else :
+    exit("Please input a correct option.")
+
+end = str(input("To what do you want to convert? (fl.oz, gal, oz, lb, in, ft, mi)"))
+
+if (end == "fl.oz" or end == "gal") and type == "V" :
+    c = 1
+elif (end == "oz" or end == "lb") and type == "M" :
+    c = 2
+elif (end == "in" or end == "ft" or end == "mi") and type == "D" :
+    c = 3
+else :
+    exit("Please input a correct option.")
+
+n = str(input("Initial value?"))
+
+s = float(checking(n))
+p = s
+
+if type == "V" :
+    if start == "ml" :
+        s = s/1000
+    s = s/3.78541
+    if end == "fl.oz" :
+        s = s*153.722
+
+if type == "M" :
+    if start == "mg" :
+        s = s/1000
+    if start == "kg" :
+        s = s*1000
+    s = s*0.00220462
+    if end == "oz" :
+        s = s*16
+
+if type == "D" :
+    if start == "mm" :
+        s = s/1000
+    if start == "cm" :
+        s = s/100
+    if start == "km" :
+        s = s*1000
+    s = s*39.3701
+    if end == "ft" :
+        s = s*0.0833333
+    if end == "mi" :
+        s = s*(1.578*10**(-5))
+
+print (p, start, "is", s, end)
+'''
+
+spent = str(input("How much money was spent?"))
+
+spent = float(checking(spent))
+
+if spent > 10 and spent <= 60 :
+    coupon = "8%"
+elif spent >60 and spent <= 150 :
+    coupon = "10%"
+elif spent > 150 and spent <= 210 :
+    coupon = "12%"
+elif spent > 210 :
+    coupon = "14%"
+else :
+    exit ("You will get no coupon")
+
+print ("You will receive a",coupon,"coupon")
