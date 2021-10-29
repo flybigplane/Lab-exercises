@@ -1,0 +1,144 @@
+#Exercises of Lab 4
+
+def checking (n) :
+    d = 0
+    m = 0
+    for i in range (len(n)) :
+        if not(n[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,-òàè+'ì_:;ç°é*?^[]@#\|><") :
+            d = d+1
+            if n[i] == "." :
+                m = m+1
+                if m>1 :
+                    exit ("Please input a correct option")
+
+    if d == len(n) :
+        return (n)
+    else :
+        exit ("Please input a correct option")
+
+
+
+#Lab 4, Ex 1
+
+num = str(checking(input("Give me all your numbers")))
+
+for i in range (len(num)) :
+    if num[i] > num [i-1] :
+        j = num[i]
+    else :
+        j = num[i-1]
+    p = num[0]
+    if p > num[i] :
+        p = num[i]
+print ("The largest number is", j, "and the smallest number is", p)
+
+e = 0
+o = 0
+for i in range (len(num)) :
+    if int(num[i])%2 == 0 :
+        e = e+1
+    else :
+        o = o+1
+
+print ("There are/is", e, "even number(s), and", o, "odd number(s)")
+
+print ("The cumulatives are :")
+i = int (num[1])
+print (int(num[0]))
+for i in range (len(num)) :
+    j = int(num[i])+int(num[i-1])
+    if i != 0 :
+        print (j)
+
+print ("The adjacent duplicates are : ")
+z = 0
+for i in range(len(num)-1) :
+
+    if num[i] == num[i+1] :
+        print (num[i])
+
+
+#Lab 4, Ex 2.
+
+word = input("What is your string?")
+print("The upper case letters are : ")
+for i in range (len(word)) :
+    if word[i] in "QWERTYUIOPASDFGHJKLZXCVBNM" :
+        print (word[i])
+
+print ("the second letter of the string is : ")
+j = 0
+for i in range (len(word)) :
+    if word[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuioèòàlkjhgfdsazxcvbnmù" :
+        j = j+1
+    if j == 2 :
+        print (word[i])
+
+print ("The position of the vowel(s) in the string is/are : ")
+iteration = ""
+for i in range (len(word)) :
+    if word[i] in "AEIUOYaeiouy" :
+        iteration = iteration + "_"
+        print (i+1)
+    else :
+        iteration = iteration + word[i]
+print ("Your string with vowels replaced with _  is", iteration)
+d = 0
+for i in range (len(word)) :
+    if word[i] in "1234567890" :
+      d = d+1
+
+print ("There are", d, "digits in the string.")
+
+#Lab 4, Ex 3
+
+
+def asterisc (n) :
+    c = 0
+    for i in range (len(n)) :
+        if n[i] == "*" :
+            c =  c+1
+
+    return (c)
+
+l = int(checking(input("How big do you want it")))
+p = "*"*l
+
+for i in range (l) :
+    print (p)
+
+m = round(l/2, 2)
+
+if int(l/2) >= m :
+    a = 1
+else :
+    a = 2
+    d = int(m)
+
+if a == 1 :
+    while m >(-d) :
+
+#Lab 4, Ex 4
+
+word = input("What is your word?")
+counter = len(word)-1
+inverse = ""
+for i in range (len(word)) :
+    inverse = inverse + word[counter]
+    counter = counter -1
+print ("The inverse word is", inverse)
+
+#Lab 4, Ex 5
+
+word = input("What is your word?")
+counter = len(word)-1
+inverse = ""
+capitals = ""
+for i in range (len(word)) :
+    inverse = inverse + word[counter]
+    if word[counter] in "QWERTYUIOPASDFGHJKLZXCVBNM" :
+        capitals = capitals + word[counter]
+    counter = counter -1
+print ("The inverse word is", inverse)
+print ("The reverse capitals are", capitals)
+
