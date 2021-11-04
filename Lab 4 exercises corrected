@@ -1,0 +1,214 @@
+def checking (n) :
+    d = 0
+    m = 0
+    for i in range (len(n)) :
+        if not(n[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,-òàè+'ì_:;ç°é*?^[]@#\|><") :
+            d = d+1
+            if n[i] == "." :
+                m = m+1
+                if m>1 :
+                    exit ("Please input a correct option")
+
+    if d == len(n) :
+        return (n)
+    else :
+        exit ("Please input a correct option")
+
+
+
+#Lab 4, Ex 1
+
+num = str(checking(input("Give me all your numbers")))
+j = 0
+for i in range (len(num)) :
+    if int(num[i]) > j :
+        j = int(num[i])
+
+    p = num[0]
+    if p > num[i] :
+        p = num[i]
+print ("The largest number is", j, "and the smallest number is", p)
+
+e = 0
+o = 0
+for i in range (len(num)) :
+    if int(num[i])%2 == 0 :
+        e = e+1
+    else :
+        o = o+1
+
+print ("There are/is", e, "even number(s), and", o, "odd number(s)")
+
+print ("The cumulatives are :")
+j = int (num[0])
+print (num[0])
+for i in range (len(num)) :
+    j = j + int(num[i])
+    if i != 0 :
+        print (j)
+
+print ("The adjacent duplicates are : ")
+z = 0
+for i in range(len(num)-1) :
+
+    if num[i] == num[i+1] :
+        print (num[i])
+
+
+#Lab 4, Ex 2.
+
+word = input("What is your string?")
+print("The upper case letters are : ")
+for i in range (len(word)) :
+    if word[i] in "QWERTYUIOPASDFGHJKLZXCVBNM" :
+        print (word[i])
+
+print ("the second letter of the string is : ")
+j = 0
+for i in range (len(word)) :
+    if word[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuioèòàlkjhgfdsazxcvbnmù" :
+        j = j+1
+    if j == 2 :
+        print (word[i])
+
+print ("The position of the vowel(s) in the string is/are : ")
+iteration = ""
+for i in range (len(word)) :
+    if word[i] in "AEIUOYaeiouy" :
+        iteration = iteration + "_"
+        print (i+1)
+    else :
+        iteration = iteration + word[i]
+print ("Your string with vowels replaced with _  is", iteration)
+d = 0
+for i in range (len(word)) :
+    if word[i] in "1234567890" :
+      d = d+1
+
+print ("There are", d, "digits in the string.")
+
+#Lab 4, Ex 3 unfinished.
+
+
+def asterisc (n) :
+    c = 0
+    for i in range (len(n)) :
+        if n[i] == "*" :
+            c =  c+1
+
+    return (c)
+
+l = int(checking(input("How big do you want it")))
+p = "*"*l
+
+for i in range (l) :
+    print (p)
+
+m = round(l/2, 2)
+
+if int(l/2) >= m :
+    a = 1
+else :
+    a = 2
+    d = int(m)
+
+if a == 1 :
+    while m >(-d) :
+
+#Lab 4, Ex 4
+
+word = input("What is your word?")
+counter = len(word)-1
+inverse = ""
+for i in range (len(word)) :
+    inverse = inverse + word[counter]
+    counter = counter -1
+print ("The inverse word is", inverse)
+
+#Lab 4, Ex 5
+
+word = input("What is your word?")
+counter = len(word)-1
+inverse = ""
+capitals = ""
+for i in range (len(word)) :
+    inverse = inverse + word[counter]
+    if word[counter] in "QWERTYUIOPASDFGHJKLZXCVBNM" :
+        capitals = capitals + word[counter]
+    counter = counter -1
+print ("The inverse word is", inverse)
+print ("The reverse capitals are", capitals)
+
+
+#Lab 4, Ex 6
+
+num = int(checking(input("Up to which number do you want all the prime numbers?")))
+
+print("All the prime numbers upto",num,"are :")
+i =  0
+
+for i in range (num) :
+    j = 0
+    d = 0
+    i = i+1
+    for j in range (int(i**(1/2))) :
+        j = j+1
+        if i%j == 0 :
+            d = d+1
+    if d == 1 :
+        if i != 1 :
+            print (i)
+
+#Lab 4, Ex 7
+
+word = input ("The word?")
+c = 0
+d = 1
+while c < len(word) :
+    for i in range (len(word)-c) :
+        print (word [i:(i+d)])
+    c = c +1
+    d = d +1
+
+#Lab4, Ex 8
+import random
+
+balls = random.randint(10,100)
+starts = random.randint(0,1)
+skill = random.randint(0,1)
+
+if skill == 0 :
+    print ("The computer is stupid")
+else :
+    print ("The computer is smart")
+
+while balls > 1 :
+    print ("\n There are", balls, "balls remaining.")
+    if starts == 1 :
+        print ("You can take out a maximum of",int(balls/2), "balls")
+        takeout = int(checking(input ("How many balls you you pull out?")))
+        if takeout <= int(balls/2) :
+            balls = balls - takeout
+            starts = 0
+        else :
+            exit ("Enter a legal value")
+    elif starts == 0 :
+        starts = 1
+        if skill == 0 :
+            takeout = random.randint (1, int(balls/2))
+            balls = balls -takeout
+        elif skill == 1 :
+            takeout = 0
+            if (balls != 63 or balls != 31 or balls != 15 or balls != 7 or balls != 3)  and balls != 2 :
+                while balls != 63 and balls != 31 and balls != 15 and balls != 7 and balls != 3 :
+                    balls = balls - 1
+                    takeout = takeout + 1
+            else :
+                takeout =random.randint(1, balls/2)
+                balls = balls - takeout
+        print ("The computer plays and removes", takeout, "balls")
+
+if starts == 0 :
+    print ("The computer lost, you won")
+else :
+    print ("You lost, noob")
