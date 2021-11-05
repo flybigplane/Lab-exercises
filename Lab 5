@@ -1,0 +1,113 @@
+def checking (n) :
+    d = 0
+    m = 0
+    for i in range (len(n)) :
+        if not(n[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,-òàè+'ì_:;ç°é*?^[]@#\|><") :
+            d = d+1
+            if n[i] == "." :
+                m = m+1
+                if m>1 :
+                    exit ("Please input a correct option")
+
+    if d == len(n) :
+        return (n)
+    else :
+        exit ("Please input a correct option")
+
+#---------------------------------------------------------------------------------------------------------------------
+
+#Lab 5, Ex 1
+
+correct = 0
+counter = 0
+while counter < 3 :
+    pin = input ("What is your pin?")
+    if pin == "1234" :
+        correct = 1
+        counter = 4
+    else :
+        counter = counter +1
+        if counter != 3 :
+            print ("Wrong pin, please try again")
+if correct == 1 :
+    print ("Pin correct, you may proceed")
+else :
+    print ("You have entered the wrong pin 3 times, the system has blocked your card.")
+
+
+#Lab 5, Ex 2
+
+
+initial = num = int(checking(input("What number do you want to factorise?")))
+print ("The factorisation is : ")
+j = 1
+for i in range (1, int(num/2)+1) :
+    j = j+1
+    if num%j == 0 :
+        num = int(num/j)
+        print (j)
+        j = 1
+if num == initial :
+    print ("The number is prime!")
+
+#Lab 5, Ex 3
+
+seed = int(checking(input("What is your seed?")))
+print("The first 100 integers are :")
+j = 0
+for i in range (100) :
+    print (seed)
+    seed = (32310901*seed+1729)%(2**24)
+
+#Lab 5, Ex 4
+
+A = float(checking(input("What is the rate of growth of the prey?")))
+B = float(checking(input("What is the rate of predation?")))
+C = float(checking(input("What is the rate of growth of the predator without food?")))
+D = float(checking(input("What is the rate of growth of the predator with food?")))
+preypop = float(checking(input("What is the initial population of the prey?")))
+predatorpop = float(checking(input("What is the initial population of the predator?")))
+time = int(checking(input("For how much time do you want to run this shit?")))
+
+for i in range (time+1) :
+    preypopi = preypop
+    predatorpopi = predatorpop
+    print ("\n At t", i, "there are :")
+    print ("There are", int(preypop), "preys remaining")
+    preypop = preypop*(1+A-B*predatorpopi)
+    print ("There are", int(predatorpop), "predators remaining")
+    predatorpop = predatorpop*(1-C+D*preypopi)
+
+#Lab 5, Ex 5
+
+country = input("What is the country's name (French only)")
+exceptions = ["Belize", "Cambodje", "Mexique", "Mozambique", "Zaire", "Zimbabwe"]
+plural = ["Etats-Unis", "Etats Unis", "Pays-Bas", "Pays Bas"]
+
+if country[0] in "AEIOUY" and not(country in plural) :
+    country = "L'"+ country
+elif country[-1] == "e" and not(country in exceptions) :
+    country = "La " + country
+elif  country in plural :
+    country = "Les " + country
+else :
+    country = "Le "+country
+
+print (country)
+
+#Lab 5, Ex 6
+
+remaining = 100
+buyers = 0
+while remaining > 0 :
+    print ("\n There are", remaining, "tickets remaining.")
+    buy = int(checking(input("How many tickets do you want to buy? (Max 4)")))
+    if buy > 4 :
+        print ("Maximum 4 tickets.")
+    elif remaining >= buy :
+        remaining = remaining - buy
+        buyers = buyers + 1
+    else :
+        print ("There are not enough tickets!")
+
+print ("All the tickets Have been sold, there are", buyers, "buyers")
