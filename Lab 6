@@ -1,0 +1,119 @@
+def checking (n) :
+    d = 0
+    m = 0
+    if  n[0] in "-1234567890." :
+        d = 1
+    for i in range (1, len(n)) :
+        if not(n[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,-òàè+'ì_:;ç°é*?^[]@#\|><"):
+            d = d+1
+            if n[i] == "." :
+                m = m+1
+                if m>1 :
+                    exit ("Please input a correct option")
+
+    if d == len(n) :
+        return (n)
+    else :
+        exit ("Please input a correct option")
+
+
+
+#Lab 6, Ex 1
+
+def vowelcount (word) :
+    counter = 0
+    print("The vowels in", word, "are :")
+    for i in range(len(word)) :
+        if word[i] in "aeiouyAEIOUY" :
+            print (word[i])
+            counter = counter + 1
+    print("There are", counter, "vowels")
+
+vowelcount("banana")
+
+#Lab 6, Ex 2
+
+def wordcount (word) :
+    word = " "+word
+    counter = 0
+    for i in range(len(word)-1) :
+        if (word[i] == " " and word[i+1] != " ") :
+            counter = counter +1
+    print (counter)
+
+wordcount(input("Give the word"))
+
+#Lab 6, Ex 3
+
+def subsidies (income, offspring) :
+    if income < 20000 :
+        payback = 2000
+    elif income < 30000 :
+        payback = 1500
+    elif income < 40000 :
+        payback = 1000
+    else :
+        payback = 0
+    subsidies = offspring * payback
+    return (subsidies)
+
+p = 0
+q = 0
+while q >= 0 :
+    income = int(checking(input("\n What's the family's income?")))
+    offspring = int(checking(input("How many children do they have?")))
+    print("You will get",subsidies(income,offspring),"in subsidies")
+    q = int(checking(input("Enter -1 to end the program")))
+    if q == -1 :
+        p = -1
+
+#Lab 6, Ex 4
+
+def balance (years, interest,money ) :
+    for i in range (years) :
+        money = money*interest
+    return (round(money,2))
+years = abs(int(checking(input("How many years do you want to run this shit?"))))
+interest = abs(float(checking(input("What is the interest rate?"))))
+money = abs(int(checking(input("How much money to start with"))))
+print ("At the end of", years, "years, you will have", balance(years,interest,money), "Euros in your bank account")
+
+#Lab 6, Ex 5
+
+def romanchecking (roman) :
+    for i in range (len(roman)) :
+        if not(roman[i] in "MCLDXVI") :
+            exit ("Stop trolling")
+    return (roman)
+
+def conversion (roman) :
+    L = []
+    for i in range (len(roman)) :
+        if roman[i] == "M" :
+            L.append(1000)
+        elif roman[i] == "D" :
+            L.append(500)
+        elif roman[i] == "C" :
+            L.append(100)
+        elif roman[i] == "L" :
+            L.append(50)
+        elif roman[i] == "X" :
+            L.append(10)
+        elif roman[i] == "V" :
+            L.append(5)
+        else :
+            L.append(1)
+    return (L)
+
+roman = romanchecking(input("Give me your roman number"))
+L = conversion(roman)
+L.append(0)
+
+total = 0
+for i in range (len(L)-1) :
+    if L[i] < L[i+1] :
+        total = total - L[i]
+    else :
+        total = total + L[i]
+
+print ("Your converted roman number is : ", total)
