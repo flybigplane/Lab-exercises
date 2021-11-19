@@ -1,0 +1,187 @@
+def checking (n) :
+    d = 0
+    m = 0
+    if  n[0] in "-1234567890." :
+        d = 1
+    for i in range (1, len(n)) :
+        if not(n[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,-òàè+'ì_:;ç°é*?^[]@#\|><"):
+            d = d+1
+            if n[i] == "." :
+                m = m+1
+                if m>1 :
+                    exit ("Please input a correct option")
+
+    if d == len(n) :
+        return (n)
+    else :
+        exit ("Please input a correct option")
+
+
+
+
+
+-----------------------------------------------------
+
+#Lab 7, Ex 1
+
+import random
+L, Reverse, evenindex, evenvalue = [] , [], [], []
+
+for i in range (12) :
+    L.append(random.randint(1,100))
+
+for i in range (len(L)) :
+    if (i+1)%2 == 0 :
+        evenindex.append(L[i])
+print ("The items with even index are :", evenindex)
+
+for i in range (len(L)) :
+    if L[i]%2 == 0 :
+        evenvalue.append(L[i])
+print ("The Even numbers are :", evenvalue)
+
+for i in range (len(L)) :
+    Reverse.append(L[len(L)-i-1])
+
+print ("The list in reverse order is :", Reverse,)
+print ("The first element is", L[0], "and the last element is", L[-1])
+
+
+#Lab 7, Ex 2
+
+Length = abs(int(checking(input("How long do you want the list?"))))
+L = []
+for i in range (Length) :
+    L.append(int(checking(input("Give a number"))))
+
+sum = 0
+for i in range (len(L)) :
+    sum = sum + ((-1)**i)*L[i]
+
+print ("The alternating sum is :", sum)
+
+
+#Lab 7, Ex 3
+
+def makealist () :
+    Length = abs(int(checking(input("\n How long do you want the list?"))))
+    L = []
+    for i in range (Length) :
+        L.append(int(checking(input("Give a number"))))
+    return (L)
+
+First = makealist ()
+Second =makealist ()
+def SameSet (First, Second) :
+    d = 0
+    Samevalue = []
+    for i in range (len(First)) :
+        for j in range (len(Second)) :
+            if First[i] == Second[j] and not(First[i] in Samevalue):
+                Samevalue.append(First[i])
+                print (Samevalue)
+    return (Samevalue)
+
+print ("The values that are in both lists are :", SameSet (First, Second))
+
+
+#Lab 7, Ex 4
+import random
+Numbers = []
+for i in range (20) :
+    Numbers.append(random.randint(0,99))
+
+def smallest (Numbers) :
+    counter = 100
+    for i in range (len(Numbers)-1) :
+        if Numbers[i] < counter :
+            counter = Numbers[i]
+    Numbers.remove (counter)
+    return (counter)
+ordered = []
+for i in range (len(Numbers)-1) :
+    ordered.append(smallest(Numbers))
+print ("The ordered list is", ordered)
+
+
+#Lab 7, Ex 5
+import random
+quantity = abs(int(checking(input("How many numbers do you want?"))))
+L = []
+for i in range (quantity) :
+    L.append (random.randint(0,100))
+maximums = []
+for i in range (1, len(L)-1) :
+    if L[i-1] < L[i] > L[i+1] :
+        maximums.append (L[i])
+if len(maximums>0) :
+    print ("The local maximums are : ", maximums)
+else : 
+print ("There are no local maximums")
+
+#Lab 7, Ex 6
+
+import random
+quantity = abs(int(checking(input("How many numbers do you want?"))))
+L = []
+for i in range (quantity) :
+    L.append (random.randint(0,100))
+def smallest (Numbers) :
+    counter = 100
+    for i in range (len(Numbers)-1) :
+        if Numbers[i] < counter :
+            counter = Numbers[i]
+    Numbers.remove (counter)
+    return (Numbers)
+
+L = smallest(L)
+
+def sumwithoutsmallest (List) :
+    sum = 0
+    for i in range (len(List)) :
+        sum = sum + List[i]
+    return (sum)
+
+print ("The sum without the smallest number is : ", sumwithoutsmallest(L))
+
+
+#Lab 7, Ex 7
+
+import random
+quantity = abs(int(checking(input("How many numbers do you want?"))))
+L = []
+for i in range (quantity) :
+    L.append (random.randint(0,100))
+
+for i in range (1, len(L)-1) :
+    L.insert(i, int((L[i-1]+L[i+1])/2))
+    L.pop(i+1)
+
+print ("When you remove the noise, you get :", L)
+
+
+#Lab 7, Ex 8
+
+import random
+quantity = abs(int(checking(input("How many numbers do you want?"))))
+L = []
+for i in range (quantity) :
+    L.append (random.randint(0,100))
+maximums = []
+for i in range (1, len(L)-1) :
+    if L[i-1] < L[i] > L[i+1] :
+        maximums.append (i)
+
+distance = len(L)
+closest = [0, 0]
+for i in range (len(maximums)-1) :
+    if abs(maximums[i]-maximums[i+1]) < distance :
+        distance = abs(maximums[i]-maximums[i+1])
+        closest.pop (0)
+        closest.insert (0, (maximums[i]+1))
+        closest.pop (1)
+        closest.append ((maximums[i+1]+1))
+if 0 in closest :
+    print ("Not enough maximums!")
+else :
+    print ("The position of the two closest maximums are", closest,"at a distance of", distance)
