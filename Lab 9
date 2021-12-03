@@ -1,0 +1,329 @@
+def checking (n) :
+    d = 0
+    m = 0
+    if  n[0] in "-1234567890." :
+        d = 1
+    for i in range (1, len(n)) :
+        if not(n[i] in "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,-òàè+'ì_:;ç°é*?^[]@#\|><"):
+            d = d+1
+            if n[i] == "." :
+                m = m+1
+                if m>1 :
+                    exit ("Please input a correct option")
+
+    if d == len(n) :
+        return (n)
+    else :
+        exit ("Please input a correct option")
+
+
+
+
+
+
+#Lab 8, Ex 1
+
+
+
+def switch (List) :
+    List[0], List[-1] = List[-1], List[0]
+    return (List)
+
+def slide (List) :
+    a = List[-1]
+    List.pop(-1)
+    List.insert (0, a)
+    return (List)
+
+def replace_even_0 (List) :
+    for i in range (len(List)) :
+        if List[i]%2 == 0 :
+            List[i] = 0
+    return (List)
+#The names are just gonna get worse
+def each_element_with_larger (List) :
+    Aux = [List[0], List[-1]]
+    for i in range (1, len(List)-1) :
+        Aux.insert(-1, max(List[i-1],List[i+1]))
+    return(Aux)
+
+def delete_central_element (List) :
+    central = int(len(List)/2)
+    if len(List)%2 == 0 :
+        List.pop(central-1)
+        List.pop(central-1)
+    else :
+        List.pop(central)
+    return (List)
+
+def move_even_front (List) :
+    counter = 0
+    for i in range (len(List)) :
+        if List[i]%2 == 0 :
+            num = List[i]
+            List.pop(i)
+            List.insert(counter, num)
+            counter += 1
+    return (List)
+
+def second_greatest (List) :
+    for i in range (len(List)-1) :
+        if List[i] < List[i+1] :
+            second = List[i]
+    return (second)
+
+def ascending_order (List) :
+    tracker = True
+    for i in range (len(List)-1) :
+        if List[i]>List[i+1] :
+            tracker = False
+    return(tracker)
+
+def adjacent_duplicate (List) :
+    tracker = False
+    for i in range (len(List)-1) :
+        if List[i]== List[i+1] :
+            tracker = True
+    return (tracker)
+
+
+def duplicate (List) :
+    tracker = False
+    for i in range (len(List)) :
+        for j in range (len(List)) :
+            if i != j :
+                if List[i] == List[j] :
+                    tracker = True
+    return (tracker)
+
+List = [1,2,3,4,5]
+print (duplicate(List))
+
+#Lab 8, Ex 2
+
+Row_1 = [10,10,10,10,10,10,10,10,10,10]
+Row_2 = [10,10,10,10,10,10,10,10,10,10]
+Row_3 = [10,10,10,10,10,10,10,10,10,10]
+Row_4 = [10,10,20,20,20,20,20,20,10,10]
+Row_5 = [10,10,20,20,20,20,20,20,10,10]
+Row_6 = [10,10,20,20,20,20,20,20,10,10]
+Row_7 = [20,20,30,30,40,40,30,30,20,20]
+Row_8 = [20,30,30,40,50,50,40,30,30,20]
+Row_9 = [30,40,50,50,50,50,50,50,40,30]
+
+Seats = [Row_1, Row_2, Row_3, Row_4, Row_5, Row_6, Row_7, Row_8, Row_9]
+
+def choose_seat (Seats) :
+    leave = 0
+    while leave == 0 :
+        first = int(checking(input("\n Enter a digit (1-9) rows, 0 to exit")))
+        if first == 0 :
+            exit ("Goodbye!")
+            leave = 1
+        if 1<=first<= 9 :
+            print ("These are the seats in", first,"\n", Seats[first-1])
+            column = int(checking(input("What seat do you want? (1-10)")))-1
+            if 0<= column <= 9 :
+                if Seats [first-1][column] != "Sold!" :
+                    print ("\n It will cost you", Seats[first-1][column])
+                    confirm = input("type 'yes' to accept")
+                    if confirm == "yes" :
+                        Seats [first-1][column] = "Sold!"
+                        print ("Sold!")
+                else :
+                    print ("This seat has been sold!")
+            else :
+                print("Please input a correct option")
+        else :
+            print ("Please enter a correct option")
+        print("\n")
+
+def choose_price (Seats) :
+    leave = 0
+
+    while leave == 0 :
+        counter = 0
+        tracker = 0
+        price = int(checking(input("\n Enter a price (10-50), or 0 to exit")))
+        if price == 0 :
+            exit ("Goodbye!")
+            leave = 1
+        while counter == 0 :
+            for i in range (9) :
+                tracker += 1
+                for j in range (10) :
+                    if Seats [i][j] == price and counter == 0 :
+                        counter = 1
+                        Seats [i][j] = 0
+                        print ("Your seat is", chr(65+i), j+1)
+                if tracker == 9 and counter == 0 :
+                    counter = 1
+                    print ("There is no seat available at that price, sorry!")
+
+choice = input ("type 'seat' to choose a seat or 'price' to choose a price ")
+if choice == "seat" :
+    choose_seat (Seats)
+elif choice == "price" :
+    choose_price(Seats)
+else :
+    print ("Stop trolling dumbass")
+
+
+#Lab 8, Ex 3
+leave = 0
+
+Used_words = ["reactor"]
+while leave == 0 :
+    print ("The used words are", Used_words)
+    word = input ("Input your word or * to exit")
+    if word == "*" :
+        exit ("The game ended")
+    last_used = Used_words[-1] + " "
+    if word[0:2] == last_used [-3:-1] and not (word in Used_words):
+        print ("Your word", word, "is correct!")
+        Used_words.append(word)
+    else :
+        exit ("Your word doesnt work!")
+
+#Lab 8, ex 4
+Customers, Sales = [], []
+
+def nameOfBestCustomer (Customers, Sales) :
+    Best_sale = Sales [0]
+    position = 0
+    for i in range (len(Sales)) :
+        if Best_sale < Sales[i] :
+            Best_sale = Sales[i]
+            position = i
+
+    return (Customers[position])
+
+num_clients = int(checking(input("How many Customers showed up?")))
+
+for i in range (num_clients) :
+    name = input("What was the name of the customer?")
+    Customers.append(name)
+    sale = float(checking(input("How much did the customer spend?")))
+    Sales.append(sale)
+print ("The customer of the day is", nameOfBestCustomer(Customers, Sales))
+
+#Lab 8, Ex 5
+L = []
+def removeMinMax (L) :
+    L.sort()
+    L = L[1:-1]
+    return (L)
+
+def onlyEven (L) :
+    E = []
+    for i in range (len(L)) :
+        if L[i]%2 == 0 :
+            E.append(L[i])
+    return(E)
+
+def twodigits (L) :
+    T = []
+    for i in range (len(L)) :
+        if len(str(L[i])) >= 2 :
+         T.append(L[i])
+    return (T)
+
+
+length = int(checking(input("How long do you want the list?")))
+for i in range (length) :
+    num = int(checking(input("Input a number")))
+    L.append(num)
+
+
+print("The list except max and min is : ")
+Converted = [str(element) for element in removeMinMax(L)]
+print (":".join(Converted))
+
+print("The list with only even stuff is")
+Converted = [str(element) for element in onlyEven(L)]
+print (":".join(Converted))
+
+print("The list but ony 2 digit stuff is")
+Converted = [str(element) for element in twodigits(L)]
+print (":".join(Converted))
+
+
+#Lab 8, Ex 6 PURE CANCER
+
+side = int(checking(input("How big do you want your square?")))
+a = 0
+b = 0
+c = 0
+d = 0
+e = 0
+f = 0
+g = 0
+counter = 0
+table = []
+column = []
+for i in range (side) :
+    for j in range (side) :
+        column.append(0)
+    table.append (column)
+    column = []
+print (table)
+
+number = 1
+for i in range (side) :
+    for a in range (d, side-d) :
+        table[b][a] = number
+        number += 1
+
+    for j in range (side) :
+        for k in range (side) :
+            if table [j][k] != 0 :
+                counter +=1
+        if counter == (side**2) :
+            exit (table)
+    counter = 0
+
+    for b in range (side-a, side-c) :
+        table[b][a] = number
+        number += 1
+
+    for j in range (side) :
+        for k in range (side) :
+            if table [j][k] != 0 :
+                counter +=1
+        if counter == (side**2) :
+            exit (table)
+    counter = 0
+
+    d += 1
+    c +=1
+
+    for e in range (d, side-g) :
+        a -= 1
+        table [b][a] = number
+        number += 1
+
+    for j in range (side) :
+        for k in range (side) :
+            if table [j][k] != 0 :
+                counter +=1
+        if counter == (side**2) :
+            exit (table)
+    counter = 0
+
+    g += 1
+
+    for f in range (c, side-c) :
+        b -= 1
+        table [b][a] = number
+        number += 1
+
+    for j in range (side) :
+        for k in range (side) :
+            if table [j][k] != 0 :
+                counter +=1
+        if counter == (side**2) :
+            exit (table)
+    counter = 0
+
+
+print (table)
