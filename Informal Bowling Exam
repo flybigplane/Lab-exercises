@@ -1,0 +1,32 @@
+#text.txt is the input fle
+#i think output.txt is pretty useless but idk
+
+
+
+
+
+
+
+import csv as csv
+FILE_NAME = "text.txt"
+OUTPUT_FILES = "output.txt"
+with open (OUTPUT_FILES, "w") as output :
+    with open(FILE_NAME) as score :
+        for line in score :
+            values = line.split(";")
+            last_value = values[-1]
+            values[-1] = last_value[0:-1]
+            name = values [1]+ " " + values[0]
+            scores = 0
+            misses = 0
+            strikes = 0
+            for i in range(2, len(values)) :
+                scores += int(values[i])
+
+                if values[i] == 0 :
+                    misses +=1
+                elif values[i] == 10 :
+                    strikes += 1
+
+            complete = name + " " + str(scores)
+            output.writelines(complete+"\n")
